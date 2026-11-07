@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "810485066841",
+    "project_id": "friendra-9e18b",
+    "storage_bucket": "friendra-9e18b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810485066841:android:35af3297db5713edc39548",
+        "android_client_info": {
+          "package_name": "com.example.friendra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvpwvN9CCDCmX5YyMrp5JAWfDf5GODIzs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

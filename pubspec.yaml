@@ -1,0 +1,26 @@
+name: friendra
+description: A privacy-first app for trusted friends to connect and stay safe.
+publish_to: "none"
+version: 0.1.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  firebase_auth: ^6.1.0
+  firebase_core: ^4.2.0
+  firebase_database: ^12.1.0
+  geolocator: ^14.1.2
+  flutter_map: ^7.0.2
+  latlong2: ^0.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.2
+
+flutter:
+  uses-material-design: true

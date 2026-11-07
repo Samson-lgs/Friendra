@@ -1,0 +1,39 @@
+{
+  "rules": {
+    ".read": false,
+    ".write": false,
+    "users": {
+      "$uid": {
+        ".read": "auth != null && (auth.uid == $uid || root.child('connections').child($uid + '_' + auth.uid).exists() || root.child('connections').child(auth.uid + '_' + $uid).exists())",
+        ".write": "auth != null && auth.uid == $uid",
+        "friends": {
+          "$friendUid": {
+            ".write": "auth != null && (auth.uid == $uid || (newData.child('uid').val() == auth.uid && (root.child('connections').child($uid + '_' + auth.uid).exists() || root.child('connections').child(auth.uid + '_' + $uid).exists())))"
+          }
+        }
+      }
+    },
+    "connections": {
+      "$connectionId": {
+        ".read": "auth != null && (data.child('userA').val() == auth.uid || data.child('userB').val() == auth.uid)",
+        ".write": "auth != null && !data.exists() && (newData.child('userA').val() == auth.uid || newData.child('userB').val() == auth.uid)",
+        ".validate": "newData.hasChildren(['userA', 'userB'])"
+      }
+    },
+    "directory": {
+      "$emailKey": {
+        ".read": "auth != null",
+        ".write": "auth != null && newData.child('uid').val() == auth.uid",
+        ".validate": "newData.hasChildren(['uid', 'email'])"
+      }
+    },
+    "friend_requests": {
+      ".read": "auth != null && query.orderByChild == 'recipientEmail' && query.equalTo == auth.token.email",
+      ".indexOn": ["recipientEmail"],
+      "$requestId": {
+        ".write": "auth != null && (!data.exists() ? newData.child('senderUid').val() == auth.uid : newData.child('recipientEmail').val() == auth.token.email)",
+        ".validate": "newData.hasChildren(['senderUid', 'senderEmail', 'recipientEmail', 'recipientName', 'status']) && (newData.child('status').val() == 'pending' || newData.child('status').val() == 'accepted' || newData.child('status').val() == 'declined')"
+      }
+    }
+  }
+}
